@@ -21,6 +21,8 @@ jobs:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
           cache: 'pnpm'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Install dependencies
         run: pnpm install
@@ -29,8 +31,7 @@ jobs:
         run: pnpm --filter "./packages/**" run build 
 
       - name: Publish to npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
         run: |
           pnpm publish -r --access public
 
