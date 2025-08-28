@@ -8,4 +8,5 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>,
 )
-console.log(import.meta.env.CUSTOM2)
+console.log(import.meta.env.CUSTOM3)
+console.log(import.meta.env.CUSTOM4.INSIDE)

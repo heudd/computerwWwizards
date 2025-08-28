@@ -10,6 +10,14 @@ export interface CreatePluginOptions extends Partial<CoreOptions<{}>>{
   }
 }
 
+function stringifyEachValue(pojo: Record<string, unknown>, keyPrefix = ''){
+  const result: Record<string, unknown> = {};
+  for(const key in pojo){
+    result[`${keyPrefix}.${key}`] = JSON.stringify(pojo[key])
+  }
+  return result;
+}
+
 export default  function createPlugin({
   initialValuesFile, 
   initialValuesByMode = {},
@@ -21,16 +29,24 @@ export default  function createPlugin({
     async config(config, env){
       
       const isDev = env.mode === 'development';
+
       const configPath = initialValuesByMode[env.mode] ?? initialValuesFile ?? 
         join(config.root ?? process.cwd(), isDev ? 'client-config.dev.json': 'client-config.json')
       
-      const newEnvs = core({
-          ...options,
-          keyPrefix,
-          initialValues: options.initialValues ?? JSON.parse(await readFile(configPath, {
+      const initialValues = options.initialValues 
+        ?? JSON.parse(await readFile(configPath, {
             encoding: 'utf-8'
           }))
+
+      console.log(initialValues)
+
+      const newEnvs = isDev? stringifyEachValue(initialValues, keyPrefix): core({
+          ...options,
+          keyPrefix,
+          initialValues
         })
+
+      console.log(newEnvs)
 
       return {
         define: newEnvs
