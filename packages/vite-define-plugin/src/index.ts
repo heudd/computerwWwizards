@@ -1,5 +1,5 @@
 import { Plugin } from "vite"
-import core, { CoreOptions } from 'define-core'
+import core, { CoreOptions } from '@computerwwwizards/define-core'
 import { join } from "node:path";
 import { readFile } from "node:fs/promises";
 
