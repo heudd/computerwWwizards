@@ -25,16 +25,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
-        - name: Build with workflow strategy
-          if: ${{ github.event.inputs.strategy == 'workflow' }}
-          uses: ./.github/workflows/build-app
-          with:
-            app: ${{ github.event.inputs.app }}
-        - name: Build with script strategy
-          if: ${{ github.event.inputs.strategy == 'script' }}
-          uses: ./.github/workflows/build-app-root
-          with:
-            app: ${{ github.event.inputs.app }}
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build with workflow strategy
+        if: ${{ github.event.inputs.strategy == 'workflow' }}
+        uses: ./.github/workflows/build-app
+        with:
+          app: docs
+      - name: Build with script strategy
+        if: ${{ github.event.inputs.strategy == 'script' }}
+        uses: ./.github/workflows/build-app-root
+        with:
+          app: ${{ github.event.inputs.app }}
 
