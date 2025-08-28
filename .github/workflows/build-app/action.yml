@@ -24,16 +24,16 @@ jobs:
           node-version: '24'
           cache: pnpm
       - name: Install dependencies
-        working-directory: apps/${{ github.event.inputs.app }}
+        working-directory: apps/${{ inputs.app }}
         run: pnpm i
 
       - name: Build app
-        working-directory: apps/${{ github.event.inputs.app }}
+        working-directory: apps/${{ inputs.app }}
         run: pnpm build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.event.inputs.app }}-build
-          path: apps/${{ github.event.inputs.app }}/dist
+          name: ${{ inputs.app }}-build
+          path: apps/${{ inputs.app }}/dist
           if-no-files-found: warn

@@ -23,10 +23,10 @@ jobs:
       - name: Build app via root
         run: pnpm build:app
         env:
-          APP: ${{ github.event.inputs.app }}
+          APP: ${{ inputs.app }}
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.event.inputs.app }}-build
+          name: ${{ inputs.app }}-build
           path: dist
           if-no-files-found: warn
