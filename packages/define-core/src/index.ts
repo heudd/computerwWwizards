@@ -34,7 +34,7 @@ export default function core<T extends object>({
       if (isPlainObject(value)) {
         stack.push({ obj: value as Record<string, unknown>, prefix: newKey });
       } else {
-        result[newKey] = value;
+        result[newKey] = typeof value === 'string' ? `"${value}"`:value;
       }
     }
   }

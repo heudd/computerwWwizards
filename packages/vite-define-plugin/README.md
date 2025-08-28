@@ -183,3 +183,6 @@ addConfigToEnv({
 - To change where keys are generated, set `keyPrefix` (e.g., `keyPrefix: 'process.env'`).
 
 
+## Roadmap
+
+- [ ] Add type generation

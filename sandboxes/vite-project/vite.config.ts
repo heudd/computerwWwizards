@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   plugins: [react()],
   define: {
-    'import.meta.env.CUSTOM': [5,3]
+    'import.meta.env.CUSTOM': [5,3],
+    'import.meta.env.CUSTOM2': '"pepito"'
   }
 })
