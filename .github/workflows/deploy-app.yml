@@ -25,6 +25,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
         - name: Build with workflow strategy
           if: ${{ github.event.inputs.strategy == 'workflow' }}
           uses: ./.github/workflows/build-app.yml
