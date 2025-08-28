@@ -1,0 +1,32 @@
+name: Build App (Root)
+
+on:
+  workflow_call:
+    inputs:
+      app:
+        required: true
+        type: string
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build app via root
+        run: pnpm build:app
+        env:
+          APP: ${{ inputs.app }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.app }}-build
+          path: dist
+          if-no-files-found: warn

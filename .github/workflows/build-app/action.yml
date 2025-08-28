@@ -1,0 +1,39 @@
+name: Build App
+
+on:
+  workflow_call:
+    inputs:
+      app:
+        required: true
+        type: string
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: pnpm
+      - name: Install dependencies
+        working-directory: apps/${{ inputs.app }}
+        run: pnpm i
+
+      - name: Build app
+        working-directory: apps/${{ inputs.app }}
+        run: pnpm build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.app }}-build
+          path: apps/${{ inputs.app }}/dist
+          if-no-files-found: warn

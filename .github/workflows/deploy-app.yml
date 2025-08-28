@@ -29,12 +29,12 @@ jobs:
           uses: actions/checkout@v4
         - name: Build with workflow strategy
           if: ${{ github.event.inputs.strategy == 'workflow' }}
-          uses: ./.github/workflows/build-app.yml
+          uses: ./.github/workflows/build-app
           with:
             app: ${{ github.event.inputs.app }}
         - name: Build with script strategy
           if: ${{ github.event.inputs.strategy == 'script' }}
-          uses: ./.github/workflows/build-app-root.yml
+          uses: ./.github/workflows/build-app-root
           with:
             app: ${{ github.event.inputs.app }}
 
