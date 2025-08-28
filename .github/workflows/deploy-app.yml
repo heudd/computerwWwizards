@@ -1,0 +1,38 @@
+
+name: Deploy App
+
+on:
+  workflow_dispatch:
+    inputs:
+        app:
+          description: 'Applications to build'
+          required: true
+          type: choice
+          options:
+            - docs
+            - playground
+        strategy:
+          description: 'Build strategy'
+          required: true
+          type: choice
+          options:
+            - workflow
+            - script
+          default: workflow
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Build with workflow strategy
+          if: ${{ github.event.inputs.strategy == 'workflow' }}
+          uses: ./.github/workflows/build-app.yml
+          with:
+            app: ${{ github.event.inputs.app }}
+        - name: Build with script strategy
+          if: ${{ github.event.inputs.strategy == 'script' }}
+          uses: ./.github/workflows/build-app-root.yml
+          with:
+            app: ${{ github.event.inputs.app }}
+

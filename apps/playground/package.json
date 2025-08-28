@@ -1,18 +1,14 @@
 {
-  "name": "@computerwwwizards/main",
+  "name": "playground",
   "version": "1.0.0",
   "description": "",
-  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:app": "node scripts/build-app.cjs"
+    "build": "mkdir ./dist && cp ./index.html ./dist/index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.14.0",
-  "devDependencies": {
-    "tsx": "^4.20.5"
-  }
+  "packageManager": "pnpm@10.14.0"
 }

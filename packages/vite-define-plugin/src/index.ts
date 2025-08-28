@@ -7,7 +7,8 @@ export interface CreatePluginOptions extends Partial<CoreOptions<{}>>{
   initialValuesFile?: string;
   initialValuesByMode?: {
     [key: string]: string;
-  }
+  },
+  merge?: boolean;
 }
 
 function stringifyEachValue(pojo: Record<string, unknown>, keyPrefix = ''){
@@ -21,7 +22,8 @@ function stringifyEachValue(pojo: Record<string, unknown>, keyPrefix = ''){
 export default  function createPlugin({
   initialValuesFile, 
   initialValuesByMode = {},
-  keyPrefix = 'import.meta.env', 
+  keyPrefix = 'import.meta.env',
+  merge, 
   ...options
 }: CreatePluginOptions = {}): Plugin {
   return {
@@ -37,8 +39,6 @@ export default  function createPlugin({
         ?? JSON.parse(await readFile(configPath, {
             encoding: 'utf-8'
           }))
-
-      console.log(initialValues)
 
       const newEnvs = isDev? stringifyEachValue(initialValues, keyPrefix): core({
           ...options,

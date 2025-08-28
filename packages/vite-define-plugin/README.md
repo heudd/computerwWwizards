@@ -186,3 +186,4 @@ addConfigToEnv({
 ## Roadmap
 
 - [ ] Add type generation
+- [ ] Add possibility to merge config with harcoded values
