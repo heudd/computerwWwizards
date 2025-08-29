@@ -15,4 +15,3 @@ if (rootEl) {
 
 
 console.log(Array.isArray(import.meta.env.CUSTOM));
-console.log(Array.isArray(process.env.CUSTOM))

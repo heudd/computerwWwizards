@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "CUSTOM": [
+    4,
+    5
+  ],
+  "SOME_KEY": "SOME_VALUE_FOR_DEVELOPMENT"
+}
