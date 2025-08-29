@@ -25,7 +25,7 @@ export default class extends WorkerEntrypoint<Env> {
         const defaultHeaders = new Headers();
         defaultHeaders.set('Cache-Control', 'public, max-age=604800');
         defaultHeaders.set('Content-Type', 'text/html');
-        return new Response("Hello!", {
+        return new Response("I hate LONASO!", {
           status: 200,
           headers: defaultHeaders
         })

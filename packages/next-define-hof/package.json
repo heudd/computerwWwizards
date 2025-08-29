@@ -1,8 +1,10 @@
 {
-  "name": "next-define-hof",
+  "license": "MIT",
+  "name": "@computerwwwizards/next-define-hof",
   "version": "1.0.0",
   "type": "module",
-  "exports": {
+  "publishConfig": {
+ "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
@@ -10,7 +12,9 @@
     }
   },
   "main": "./dist/index.cjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.ts"
+  },
+  "main": "./src/index.ts",
   "files": [
     "dist"
   ],
@@ -34,5 +38,5 @@
   "dependencies": {
     "@computerwwwizards/define-core": "workspace:*"
   },
-  "private": true
+  "private": false
 }

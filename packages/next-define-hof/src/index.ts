@@ -5,11 +5,14 @@ import { readFile } from "node:fs/promises";
 
 
 export interface WithDefineHOFConfigOptions {
-  globalOptions?: CoreOptions<{}>;
-  serverOptions?: CoreOptions<{}>;
+  globalOptions?: Partial<CoreOptions<{}>>;
+  serverOptions?: Partial<CoreOptions<{}>>;
   initialValuesPath?: string
 }
+ //TODO:export also ta helper to merge defines
 
+
+// TODO: consider mutating instead of cloning
 export async function withDefineConfig(
   config: NextConfig, 
   {
@@ -24,9 +27,9 @@ export async function withDefineConfig(
   }= initialValuesPath? JSON.parse(await readFile(initialValuesPath, {encoding: 'utf-8'})) : {};
 
   const { initialValues: initialGlobalOptions } = globalOptions
-  const finalGlobalInitialValues = initialGlobalOptions ?? maybeValues.global
+  const finalGlobalInitialValues = initialGlobalOptions ?? maybeValues.global ?? {}
   const { initialValues: initialServerOptions } = serverOptions
-  const finalInitialServerValues = initialServerOptions ?? maybeValues.server
+  const finalInitialServerValues = initialServerOptions ?? maybeValues.server ?? {}
 
   return {
     ...config,
