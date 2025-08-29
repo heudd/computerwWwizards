@@ -15,6 +15,7 @@
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
+    "@computerwwwizards/rsbuild-define-plugin": "workspace:*",
     "@biomejs/biome": "2.0.6",
     "@rsbuild/core": "^1.4.13",
     "@rsbuild/plugin-react": "^1.3.4",
